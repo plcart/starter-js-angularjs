@@ -1,0 +1,29 @@
+{
+  "name": "starter-js-angularjs",
+  "version": "1.0.0",
+  "description": "Starter project for AngularJs Application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plcart/starter-js-angularjs.git"
+  },
+  "keywords": [
+    "angularjs",
+    "angular"
+  ],
+  "author": "plcart",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plcart/starter-js-angularjs/issues"
+  },
+  "homepage": "https://github.com/plcart/starter-js-angularjs#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  },
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}

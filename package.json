@@ -21,7 +21,13 @@
   },
   "homepage": "https://github.com/plcart/starter-js-angularjs#readme",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "del": "^2.2.1",
+    "gulp": "^3.9.1",
+    "gulp-load-plugins": "^1.2.4",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-rev": "^7.1.0",
+    "gulp-uglify": "^1.5.4",
+    "gulp-usemin": "^0.3.23"
   },
   "dependencies": {
     "express": "^4.14.0"

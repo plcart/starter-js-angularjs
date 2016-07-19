@@ -3,7 +3,9 @@ var express = require('express'),
     app = express();
 
 
-app.use(/\/(bower_components|src|dist)\/[\s\S]+?\.(css|js|jpg|jpeg|png|map)$/, (req, res) => res.sendFile(path.join(__dirname, req.originalUrl)));
+app.use(/\/(bower_components)\/[\s\S]+?\.(css|js|jpg|jpeg|png|map)$/, (req, res) => res.sendFile(path.join(__dirname, req.originalUrl)));
+app.use(/\/[\s\S]+?\.(css|js|jpg|jpeg|png|map)$/, (req, res) => res.sendFile(path.join(__dirname, app.get('env') === 'development' ? 'src' : 'dist', req.originalUrl)));
+
 app.use(/\/views\/[\s\S]+?\.html$/, (req, res) => res.sendFile(path.join(__dirname, app.get('env') === 'development' ? 'src' : 'dist', req.originalUrl)));
 app.get(/(\/{1}.*)?$/, (req, res) => res.sendFile(path.join(__dirname, app.get('env') === 'development' ? 'src' : 'dist', 'index.html')));
 

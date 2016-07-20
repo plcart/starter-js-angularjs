@@ -1,0 +1,36 @@
+<h2>PageItem</h2>
+
+<div>
+    <label>Name: </label>
+    <label>{{page.PageFormatted}}</label>
+</div>
+<div>
+    <label>Title: </label>
+    <label>{{page.Title}}</label>
+</div>
+<div>
+    <label>Description: </label>
+    <label>{{page.Description}}</label>
+</div>
+<div>
+    <label>Created At: </label>
+    <label>{{page.CreatedFormatted}}</label>
+</div>
+<br>
+<a ui-sref="highlight_list({page:page.PageFormatted.toLowerCase()})">Add Highlight</a>
+<h4>Highlights</h4>
+<table>
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Created At</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="highlight in page.PageHighlights">
+            <td>{{highlight.Title}}</td>
+            <td>{{highlight.CreatedFormatted}}
+        </tr>
+    </tbody>
+</table>

@@ -1,4 +1,5 @@
-angular.module('StarterAngular', ['ui.router'])
+angular.module('StarterAngular', ['ui.router', 'ngResource'])
+    .constant('urlBase', 'http://localhost:64758/api/')
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
 
         $locationProvider.html5Mode({
@@ -11,8 +12,48 @@ angular.module('StarterAngular', ['ui.router'])
         $stateProvider
             .state('app', {
                 url: "/",
-                templateUrl: "views/partial.html",
-                controller:"MainController"
+                templateUrl: "/views/home.html",
+                controller: "MainController"
+            })
+            .state('page_title', {
+                url: '/pages',
+                templateUrl: '/views/page-title/page-title-list.html',
+                controller: 'PageTitleListController',
+                resolve: {
+                    pageTitles: ['PageTitleService', function (PageTitleService) {
+                        return PageTitleService.query();
+                    }]
+                }
+            })
+            .state('page_item', {
+                url: '/pages/:page',
+                templateUrl: '/views/page-title/page-title-item.html',
+                controller: 'PageTitleItemController',
+                resolve: {
+                    pageTitle: ['PageTitleService', '$stateParams', function (PageTitleService, $stateParams) {
+                        return PageTitleService.get({ page: $stateParams.page });
+                    }]
+                }
+            })
+            .state('highlight_list', {
+                url: '/pages/:page/highlights',
+                templateUrl: '/views/page-highlight/page-highlight-list.html',
+                controller: 'PageHighlightListController',
+                resolve: {
+                    highlights: ['PageHighlightService', '$stateParams', function (PageTitleService, $stateParams) {
+                        return PageTitleService.query({ page: $stateParams.page });
+                    }]
+                }
+            })
+            .state('highlight_item', {
+                url: '/pages/:page/highlights/:id',
+                templateUrl: '/views/page-title/page-title-item.html',
+                controller: 'PageTitleItemController',
+                resolve: {
+                    pageTitle: ['PageTitleService', '$stateParams', function (PageTitleService, $stateParams) {
+                        return PageTitleService.get({ page: $stateParams.page });
+                    }]
+                }
             });
 
     });

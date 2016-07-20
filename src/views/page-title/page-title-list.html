@@ -1,0 +1,20 @@
+<h2>Page Title</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Page</th>
+            <th>Title</th>
+            <th>Created At</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="page in Pages">
+            <td>{{page.PageFormatted}}</td>
+            <td>{{page.Title}}</td>
+            <td>{{page.CreatedFormatted}}</td>
+            <td><a ui-sref="page_item({page:page.PageFormatted.toLowerCase()})">Edit</a></td>
+        </tr>
+    </tbody>
+</table>

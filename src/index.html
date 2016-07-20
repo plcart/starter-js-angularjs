@@ -8,16 +8,26 @@
 </head>
 
 <body ng-app="StarterAngular">
-    <h1>Teste</h1>
-    <ui-view>{{1+1}}</ui-view>
+    <h1>Starter Angular</h1>
+    <ul>
+        <li><a  ui-sref="page_title">Page Title</a></li>
+    </ul>
+    <ui-view>Loading</ui-view>
 
-    <!-- build:js1 scripts/vendors.js -->
-    <script src="../bower_components/angular/angular.min.js"></script>
-    <script src="../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <!-- build:js1 /scripts/vendors.js -->
+    <script src="/../bower_components/angular/angular.min.js"></script>
+    <script src="/../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+    <script src="/../bower_components/angular-resource/angular-resource.min.js"></script>
      <!-- endbuild -->
-     <!-- build:js scripts/main.js -->
-    <script src="app.js"></script>
-    <script src="controllers/mainCtrl.js"></script>
+     <!-- build:js /scripts/main.js -->
+    <script src="/app.js"></script>
+    <script src="/controllers/mainCtrl.js"></script>
+    <script src="/controllers/page-title/pageTitleListCtrl.js"></script>
+    <script src="/controllers/page-title/pageTitleItemCtrl.js"></script>
+    <script src="/controllers/page-highlight/pageHighlightListCtrl.js"></script>
+    <script src="/controllers/page-highlight/pageHighlightItemCtrl.js"></script>
+    <script src="/services/pageTitleService.js"></script>
+    <script src="/services/pageHighlightService.js"></script>
      <!-- endbuild -->
 </body>
 

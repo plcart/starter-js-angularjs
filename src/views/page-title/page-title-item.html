@@ -17,6 +17,22 @@
     <label>{{page.CreatedFormatted}}</label>
 </div>
 <br>
+<form name="formPageTitle">
+    <div>
+        <label for="page.Title">Title:</label>
+        <input type="text" ng-model="page.Title" placeholder="Enter the Title" required />
+    </div>
+    <div>
+        <label for="page.Description">Description:</label>
+        <textarea type="text" ng-model="page.Description" placeholder="Enter the Description"></textarea>
+    </div>
+    <div>
+        <input type="submit" value="Save" ng-disabled="{{formPageTitle.$invalid}}" ng-click="Save()">
+    </div>
+</form>
+<br>
+<label for="">{{message}}</label>
+<br>
 <a ui-sref="highlight_list({page:page.PageFormatted.toLowerCase()})">Add Highlight</a>
 <h4>Highlights</h4>
 <table>

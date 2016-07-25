@@ -1,7 +1,8 @@
 angular.module('StarterAngular', ['ui.router', 'ngResource'])
     .constant('urlBase', 'http://localhost:64758/api/')
-    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
-
+    .constant('formatters', [{ method: "queryCsv", accept: 'text/csv' },
+        { method: "queryExcel", accept: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }])
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false

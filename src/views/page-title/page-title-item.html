@@ -14,7 +14,7 @@
 </div>
 <div>
     <label>Created At: </label>
-    <label>{{page.CreatedFormatted}}</label>
+    <label>{{page.Created}}</label>
 </div>
 <br>
 <form name="formPageTitle">
@@ -27,13 +27,30 @@
         <textarea type="text" ng-model="page.Description" placeholder="Enter the Description"></textarea>
     </div>
     <div>
-        <input type="submit" value="Save" ng-disabled="{{formPageTitle.$invalid}}" ng-click="Save()">
+        <label for="page.Page">Page</label>
+        <select ng-disabled="page.Id" ng-model="page.Page" ng-options="_page for _page in pages track by _page" required></select>
+    </div>
+    <div>
+        <label for="page.Language">Language</label>
+        <select ng-disabled="page.Id" ng-model="page.Language" ng-options="language for language in languages track by language"
+            required></select>
+    </div>
+    <div>
+        <label for="page.MediaType">Media Type</label>
+        <select ng-model="page.MediaType" ng-options="media for media in medias track by media" required></select>
+    </div>
+    <div>
+        <label for="page.MediaValue">Value:</label>
+        <input type="text" ng-model="page.MediaValue" placeholder="Media Value" />
+    </div>
+    <div>
+        <input type="submit" value="Save" ng-disabled="formPageTitle.$invalid && formPageTitle.$pristine" ng-click="Save()">
     </div>
 </form>
 <br>
 <label for="">{{message}}</label>
 <br>
-<a ui-sref="highlight_list({page:page.PageFormatted.toLowerCase()})">Add Highlight</a>
+<a ng-show="page.Id" ui-sref="highlight_new({Page:page.Page.toLowerCase(),Language:page.Language.toLowerCase()})">Add Highlight</a>
 <h4>Highlights</h4>
 <table>
     <thead>
@@ -41,12 +58,15 @@
             <th>Title</th>
             <th>Created At</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr ng-repeat="highlight in page.PageHighlights">
+        <tr ng-repeat="highlight in highlights">
             <td>{{highlight.Title}}</td>
-            <td>{{highlight.CreatedFormatted}}
+            <td>{{highlight.Created}}</td>
+            <td><a ui-sref="highlight_edit({Page:page.Page.toLowerCase(),Language:page.Language.toLowerCase(),Id:highlight.Id})">Edit</a></td>
+            <td><a href="" ng-click="Delete(highlight)">Delete</a></td>
         </tr>
     </tbody>
 </table>

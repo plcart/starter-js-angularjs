@@ -1,11 +1,16 @@
 <h2>Page Title</h2>
-
-<button ng-click="DownloadCsv()">CSV</button>
-<button ng-click="DownloadExcel()">Excel</button>
+<div>
+    <a ui-sref="page_item_new">Add New Page Title</a>
+</div>
+<div>
+    <button ng-click="DownloadCsv()">CSV</button>
+    <button ng-click="DownloadExcel()">Excel</button>
+</div>
 <table>
     <thead>
         <tr>
             <th>Page</th>
+            <th>Language</th>
             <th>Title</th>
             <th>Created At</th>
             <th></th>
@@ -14,10 +19,11 @@
     </thead>
     <tbody>
         <tr ng-repeat="page in Pages">
-            <td>{{page.PageFormatted}}</td>
+            <td>{{page.Page}}</td>
+            <td>{{page.Language}}</td>
             <td>{{page.Title}}</td>
-            <td>{{page.CreatedFormatted}}</td>
-            <td><a ui-sref="page_item({page:page.PageFormatted.toLowerCase()})">Edit</a></td>
+            <td>{{page.Created}}</td>
+            <td><a ui-sref="page_item_edit({Page:page.Page.toLowerCase(),Language:page.Language.toLowerCase()})">Edit</a></td>
             <td><a href="" ng-click="Delete(page)">Delete</a></td>
         </tr>
     </tbody>

@@ -1,0 +1,30 @@
+<h2>Page Highlight</h2>
+<br>
+<form name="formPageHighlight">
+    <div>
+        <label for="highlight.Title">Title:</label>
+        <input type="text" ng-model="highlight.Title" placeholder="Enter the Title" required />
+    </div>
+    <div>
+        <label for="highlight.Description">Description:</label>
+        <textarea type="text" ng-model="highlight.Description" placeholder="Enter the Description"></textarea>
+    </div>
+    <div>
+        <label for="highlight.Language">Language</label>
+        <select ng-model="highlight.Language" ng-options="language for language in languages track by language"
+            required></select>
+    </div>
+    <div>
+        <label for="highlight.MediaType">Media Type</label>
+        <select ng-model="highlight.MediaType" ng-options="media for media in medias track by media" required></select>
+    </div>
+    <div>
+        <label for="highlight.MediaValue">Value:</label>
+        <input type="text" ng-model="highlight.MediaValue" placeholder="Media Value" />
+    </div>
+    <div>
+        <input type="submit" value="Save" ng-disabled="formPageHighlight.$invalid && formPageHighlight.$pristine" ng-click="Save()">
+    </div>
+</form>
+<br>
+<label for="">{{message}}</label>

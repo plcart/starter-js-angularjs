@@ -3,13 +3,14 @@ Starter Project for AngularJs Application
 
 Follow up plan(not particular route)
 
-* install dependencies
-* file upload
-* resource integration
-* http interceptor
+
+* crop image
+* sass
 * gulp task runner tasks
     * build task complete
-* crop image
+* paginate
+* auth
+* http interceptor
 * unit-test
-* sass
+
 

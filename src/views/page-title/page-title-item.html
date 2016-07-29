@@ -39,12 +39,16 @@
         <label for="page.MediaType">Media Type</label>
         <select ng-model="page.MediaType" ng-options="media for media in medias track by media" required></select>
     </div>
-    <div>
+    <div ng-hide="DisplayFileInput()">
         <label for="page.MediaValue">Value:</label>
         <input type="text" ng-model="page.MediaValue" placeholder="Media Value" />
     </div>
+    <div ng-show="DisplayFileInput()">
+        <label for="page.MediaValue">Value:</label>
+        <input type="file" ng-model="page.MediaValue" placeholder="Media Value"  name="page.MediaValue" file-upload="page.MediaValue" required/>
+    </div>
     <div>
-        <input type="submit" value="Save" ng-disabled="formPageTitle.$invalid && formPageTitle.$pristine" ng-click="Save()">
+        <input type="submit" value="Save" ng-disabled="formPageTitle.$invalid" ng-click="Save()">
     </div>
 </form>
 <br>

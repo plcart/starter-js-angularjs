@@ -5,13 +5,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="/../bower_components/angular-loading-bar/src/loading-bar.css">
+    <link rel="stylesheet" href="/../bower_components/angular-loading-bar/build/loading-bar.min.css">
 </head>
 
 <body ng-app="StarterAngular">
     <h1>Starter Angular</h1>
     <ul>
-        <li><a  ui-sref="page_title">Page Title</a></li>
+        <li><a ui-sref="page_title">Page Title</a></li>
     </ul>
     <ui-view>Loading</ui-view>
 
@@ -19,19 +19,21 @@
     <script src="/../bower_components/angular/angular.min.js"></script>
     <script src="/../bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="/../bower_components/angular-resource/angular-resource.min.js"></script>
-    <script src="/../bower_components/angular-loading-bar/src/loading-bar.js"></script>
-     <!-- endbuild -->
-     <!-- build:js /scripts/main.js -->
+    <script src="/../bower_components/angular-loading-bar/build/loading-bar.min.js"></script>
+    <!-- endbuild -->
+    <!-- build:js /scripts/main.js -->
     <script src="/app.js"></script>
     <script src="/controllers/mainCtrl.js"></script>
     <script src="/controllers/page-title/pageTitleListCtrl.js"></script>
     <script src="/controllers/page-title/pageTitleItemCtrl.js"></script>
-    <script src="/services/contentNegotiationFactory.js"></script>
     <script src="/controllers/page-highlight/pageHighlightItemCtrl.js"></script>
+    <script src="/directives/fileUpload.js"></script>
+    <script src="/services/contentNegotiationFactory.js"></script>
     <script src="/services/pageTitleService.js"></script>
     <script src="/services/pageHighlightService.js"></script>
     <script src="/services/enumService.js"></script>
-     <!-- endbuild -->
+    <script src="/services/fileUploadService.js"></script>
+    <!-- endbuild -->
 </body>
 
 </html>

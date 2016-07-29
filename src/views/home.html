@@ -1,1 +1,11 @@
-<h2>Welcome to the Starter Angular Application</h2> 
+<h2>Welcome to the Starter Angular Application</h2>
+<br>
+<form name="frmUpload">
+    <div>
+        <label for="file">File </label>
+        <input type="file"  name="file" file-upload="file" ng-model="file" required> 
+    </div>
+    <div>
+        <input type="submit" value="Send"  ng-disabled="frmUpload.$invalid"  ng-click="Save()">
+    </div>
+</form>

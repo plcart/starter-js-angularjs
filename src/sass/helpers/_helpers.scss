@@ -1,0 +1,123 @@
+$iterations: 15;
+$step: 5;
+$pos: "top" "right" "bottom" "left";
+$pos-abrev: "t" "r" "b" "l";
+
+/* padding classes */
+@for $i from 0 through $iterations {
+  .p-#{$i*$step} {
+    padding: #{$i*$step}px !important;
+  }
+}
+
+/* padding top, right, bottom, left classes */
+@for $p from 1 through 4 {
+  @for $i from 0 through $iterations {
+    .p-#{nth($pos-abrev, $p)}-#{$i*$step} {
+      padding-#{nth($pos, $p)}: #{$i*$step}px !important;
+    }
+  }
+}
+
+/* padding vertical*/
+@for $i from 1 through $iterations {
+  .p-v-#{$i*$step} {
+    padding: #{$i*$step}px 0 !important;
+  }
+}
+
+/* padding horizontal*/
+@for $i from 1 through $iterations {
+  .p-h-#{$i*$step} {
+    padding: 0 #{$i*$step}px !important;
+  }
+}
+
+/* padding 0 */
+.no-p {
+  padding: 0px !important;
+}
+
+.no-p-t {
+  padding-top: 0px !important;
+}
+
+.no-p-r {
+  padding-right: 0px !important;
+}
+
+.no-p-b {
+  padding-bottom: 0px !important;
+}
+
+.no-p-l {
+  padding-left: 0px !important;
+}
+
+.no-p-v {
+  padding: 0px 0 !important;
+}
+
+.no-p-h {
+  padding: 0 0px !important;
+}
+
+/* margin classes */
+@for $i from 0 through $iterations {
+  .m-#{$i*$step} {
+    margin: #{$i*$step}px !important;
+  }
+}
+
+/*margin top, right, bottom, left classes*/
+@for $p from 1 through 4 {
+  @for $i from 0 through $iterations {
+    .m-#{nth($pos-abrev, $p)}-#{$i*$step} {
+      margin-#{nth($pos, $p)}: #{$i*$step}px !important;
+    }
+  }
+}
+
+/* margin vertical*/
+@for $i from 1 through $iterations {
+  .m-v-#{$i*$step} {
+    margin: #{$i*$step}px 0 !important;
+  }
+}
+
+/* padding horizontal*/
+@for $i from 1 through $iterations {
+  .m-h-#{$i*$step} {
+    margin: 0 #{$i*$step}px !important;
+  }
+}
+
+
+/* margin 0 */
+.no-m {
+  margin: 0px !important;
+}
+
+.no-m-t {
+  margin-top: 0px !important;
+}
+
+.no-m-r {
+  margin-right: 0px !important;
+}
+
+.no-m-b {
+  margin-bottom: 0px !important;
+}
+
+.no-m-l {
+  margin-left: 0px !important;
+}
+
+.no-m-v {
+  margin: 0px 0 !important;
+}
+
+.no-m-h {
+  margin: 0 0px !important;
+}

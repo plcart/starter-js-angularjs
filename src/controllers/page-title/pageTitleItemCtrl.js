@@ -11,6 +11,10 @@ angular.module('StarterAngular')
                 return $scope.page.MediaType == 'Image' || $scope.page.MediaType == 'File';
             }
 
+            $scope.MediaChanged = function(){
+                return $scope.DisplayFileInput() && $scope.Id && $scope.page.MediaValue && !$scope.page.MediaChange;
+            }
+
             $scope.Save = function () {
                 if ($scope.formPageTitle.$valid) {
                     if ($scope.page.Id)
@@ -32,7 +36,6 @@ angular.module('StarterAngular')
 
             $scope.Delete = function (highlight) {
                 highlight.Page = $state.params;
-                console.log(highlight);
                 highlight.$destroy().then(function (d) {
                     $scope.highlights = PageHighlightService.query({ page: $scope.page.Page, language: $scope.page.Language });
                 });

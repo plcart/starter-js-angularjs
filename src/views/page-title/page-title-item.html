@@ -35,17 +35,24 @@
         <select ng-disabled="page.Id" ng-model="page.Language" ng-options="language for language in languages track by language"
             required></select>
     </div>
-    <div>
-        <label for="page.MediaType">Media Type</label>
-        <select ng-model="page.MediaType" ng-options="media for media in medias track by media" required></select>
+    <div ng-show="MediaChanged()">
+        <img ng-show="page.MediaType=='Image'" ng-src="{{page.MediaValue}}" width="200px" alt="">
+        <a ng-href="#" ng-click="page.MediaChange=true">Change</a>
     </div>
-    <div ng-hide="DisplayFileInput()">
-        <label for="page.MediaValue">Value:</label>
-        <input type="text" ng-model="page.MediaValue" placeholder="Media Value" />
-    </div>
-    <div ng-show="DisplayFileInput()">
-        <label for="page.MediaValue">Value:</label>
-        <input type="file" ng-model="page.MediaValue" placeholder="Media Value"  name="page.MediaValue" file-upload="page.MediaValue" required/>
+    <div ng-hide="MediaChanged()">
+        <div>
+            <label for="page.MediaType">Media Type</label>
+            <select ng-model="page.MediaType" ng-options="media for media in medias track by media" required></select>
+        </div>
+        <div ng-hide="DisplayFileInput()">
+            <label for="page.MediaValue">Value:</label>
+            <input type="text" ng-model="page.MediaValue" placeholder="Media Value" />
+        </div>
+        <div ng-show="DisplayFileInput()">
+            <label for="page.MediaValue">Value:</label>
+            <input type="file" ng-model="page.MediaValue" accept="{{page.MediaType=='Image'?'.jpg,.png,.jpeg':'.*'}}" placeholder="Media Value"
+                name="page.MediaValue" file-upload="page.MediaValue" />
+        </div>
     </div>
     <div>
         <input type="submit" value="Save" ng-disabled="formPageTitle.$invalid" ng-click="Save()">

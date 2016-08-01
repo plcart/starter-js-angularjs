@@ -11,19 +11,29 @@
     </div>
     <div>
         <label for="highlight.Language">Language</label>
-        <select ng-model="highlight.Language" ng-options="language for language in languages track by language"
-            required></select>
+        <select ng-model="highlight.Language" ng-options="language for language in languages track by language" required></select>
+    </div>
+    <div ng-show="MediaChanged()">
+        <img ng-show="highlight.MediaType=='Image'" ng-src="{{highlight.MediaValue}}" width="200px" alt="">
+        <a ng-href="#" ng-click="highlight.MediaChange=true">Change</a>
+    </div>
+    <div ng-hide="MediaChanged()">
+        <div>
+            <label for="highlight.MediaType">Media Type</label>
+            <select ng-model="highlight.MediaType" ng-options="media for media in medias track by media" required></select>
+        </div>
+        <div ng-hide="DisplayFileInput()">
+            <label for="highlight.MediaValue">Value:</label>
+            <input type="text" ng-model="highlight.MediaValue" placeholder="Media Value" />
+        </div>
+        <div ng-show="DisplayFileInput()">
+            <label for="highlight.MediaValue">Value:</label>
+            <input type="file" ng-model="highlight.MediaValue" accept="{{highlight.MediaType=='Image'?'.jpg,.png,.jpeg':'.*'}}" placeholder="Media Value"
+                name="highlight.MediaValue" file-upload="highlight.MediaValue" />
+        </div>
     </div>
     <div>
-        <label for="highlight.MediaType">Media Type</label>
-        <select ng-model="highlight.MediaType" ng-options="media for media in medias track by media" required></select>
-    </div>
-    <div>
-        <label for="highlight.MediaValue">Value:</label>
-        <input type="text" ng-model="highlight.MediaValue" placeholder="Media Value" />
-    </div>
-    <div>
-        <input type="submit" value="Save" ng-disabled="formPageHighlight.$invalid && formPageHighlight.$pristine" ng-click="Save()">
+        <input type="submit" value="Save" ng-disabled="formPageHighlight.$invalid" ng-click="Save()">
     </div>
 </form>
 <br>

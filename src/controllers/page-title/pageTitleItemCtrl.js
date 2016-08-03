@@ -3,6 +3,16 @@ angular.module('StarterAngular')
         function ($scope, PageTitleService, PageHighlightService, FileUploadService, pageTitle, highlights, languages, pages, medias, $state) {
             $scope.page = pageTitle;
             $scope.highlights = highlights;
+
+            $scope.highlightTotal = function () {
+                return $scope.highlights.length ? parseInt($scope.highlights[0].$count) : 0;
+            }
+            $scope.pagesCount = function () {
+                return Array.from(Array(Math.ceil($scope.highlightTotal() / 10)), (x, i) => i);
+            };
+
+
+
             $scope.languages = languages.data;
             $scope.pages = pages.data;
             $scope.medias = medias.data;
@@ -11,8 +21,12 @@ angular.module('StarterAngular')
                 return $scope.page.MediaType == 'Image' || $scope.page.MediaType == 'File';
             }
 
-            $scope.MediaChanged = function(){
-                return $scope.DisplayFileInput() && $scope.Id && $scope.page.MediaValue && !$scope.page.MediaChange;
+            $scope.MediaChanged = function () {
+                return $scope.DisplayFileInput() && $scope.page.Id && $scope.page.MediaValue && !$scope.page.MediaChange;
+            }
+
+            $scope.changePage = function (index) {
+                $scope.highlights = PageHighlightService.query({ pageindex: index, page: $scope.page.Page, language: $scope.page.Language });
             }
 
             $scope.Save = function () {

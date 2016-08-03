@@ -2,19 +2,19 @@
 
 <div>
     <label>Name: </label>
-    <label>{{page.PageFormatted}}</label>
+    <label>{{::page.PageFormatted}}</label>
 </div>
 <div>
     <label>Title: </label>
-    <label>{{page.Title}}</label>
+    <label>{{::page.Title}}</label>
 </div>
 <div>
     <label>Description: </label>
-    <label>{{page.Description}}</label>
+    <label>{{::page.Description}}</label>
 </div>
 <div>
     <label>Created At: </label>
-    <label>{{page.Created}}</label>
+    <label>{{::page.Created}}</label>
 </div>
 <br>
 <form name="formPageTitle">
@@ -81,3 +81,7 @@
         </tr>
     </tbody>
 </table>
+<div><label for="">Showing {{highlightTotal()>10?'10':highlightTotal()}} of {{highlightTotal()}} itens</label></div>
+<div>
+    <a href="" ng-repeat="x in pagesCount()" ng-click="changePage($index+1)">{{$index+1}}</a>
+</div>

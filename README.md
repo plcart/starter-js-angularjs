@@ -5,7 +5,6 @@ Follow up plan(not particular route)
 
 
 
-* paginate
 * auth
 * http interceptor
 * bootstrap

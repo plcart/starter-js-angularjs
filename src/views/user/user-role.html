@@ -1,1 +1,29 @@
 <h2>Current User</h2>
+<br>
+<div>
+    <label for="">Email: </label>
+    <label for="">{{user.Email}}</label>
+</div>
+<div>
+    <label for="">Name: </label>
+    <label for="">{{user.Name}}</label>
+</div>
+<div>
+    <label for="">Profile: </label>
+    <label for="">{{user.Profile.Name}}</label>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="role in roles">
+            <td>{{role.Id}}</td>
+            <td>{{role.Name}}</td>
+        </tr>
+    </tbody>
+</table>

@@ -2,7 +2,7 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-ba
     .constant('urlBase', 'http://localhost:64758/api/')
     .constant('formatters', [{ method: "queryCsv", accept: 'text/csv' },
         { method: "queryExcel", accept: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }])
-    .config(function ($stateProvider, $urlRouterProvider, $locationProvider) {
+    .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
         $locationProvider.html5Mode({
             enabled: true,
@@ -10,6 +10,22 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-ba
         });
 
         $urlRouterProvider.otherwise("/login");
+
+        $httpProvider.interceptors.push(function () {
+            return {
+                'response': function (response) {
+                    return response;
+                },
+                'responseError': function (responseError) {
+                    switch (responseError.status) {
+                        case 401:
+                            window.location.assign("/login");
+                            break;
+                    }
+                    return responseError;
+                }
+            }
+        })
 
         $stateProvider
             .state('app', {
@@ -127,13 +143,24 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-ba
                             Username: "",
                             Password: ""
                         };
+                    }],
+                    roles: [function () {
+                        return null;
                     }]
                 }
             })
             .state("user_role", {
                 url: '/users/roles',
                 templateUrl: '/views/user/user-role.html',
-                controller: 'UserController'
+                controller: 'UserController',
+                resolve: {
+                    user: ['AuthService', function (AuthService) {
+                        return AuthService.current();
+                    }],
+                    roles: ['AuthService', function (AuthService) {
+                        return AuthService.roles();
+                    }]
+                }
             });
 
     });

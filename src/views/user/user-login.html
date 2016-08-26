@@ -1,0 +1,18 @@
+<h2>Login</h2>
+<form name="formLogin">
+    <div>
+        <label for="user.Username">Username</label>
+        <input type="text" ng-model="user.Username" maxlength="150" placeholder="Enter Your Username" required>
+    </div>
+    <div>
+        <label for="user.Password">Password</label>
+        <input type="password" ng-model="user.Password" maxlength="12" placeholder="Enter Your Password" required>
+    </div>
+    <div>
+        <input type="submit" value="Register" ng-disabled="formLogin.$invalid" ng-click="Login()">
+    </div>
+</form>
+<br>
+<div>
+    <span>{{message}}</span>
+</div>

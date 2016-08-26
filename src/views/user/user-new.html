@@ -1,0 +1,28 @@
+<h2>Register</h2>
+<form name="formRegister">
+    <div>
+        <label for="user.Name">Name</label>
+        <input type="text" ng-model="user.Name" maxlength="150" placeholder="Enter Your Name" required>
+    </div>
+    <div>
+        <label for="user.Email">Email</label>
+        <input type="email" ng-model="user.Email" maxlength="100" placeholder="Enter Your Email" required>
+    </div>
+    <div>
+        <label for="user.Username">Username</label>
+        <input type="text" ng-model="user.Username" maxlength="150" placeholder="Enter Your Username" required>
+    </div>
+    <div>
+        <label for="user.Password">Password</label>
+        <input type="password" ng-model="user.Password" pattern="^(([a-zA-Z]+\d+)|(\d+[a-zA-Z]+))[a-zA-Z0-9]*$" minlength="8" maxlength="12"
+            placeholder="Enter Your Password" required>
+    </div>
+    <div>
+        <input type="submit" value="Register" ng-disabled="formRegister.$invalid" ng-click="Save()">
+    </div>
+
+</form>
+<br>
+<div>
+    <span>{{message}}</span>
+</div>

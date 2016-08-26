@@ -9,7 +9,7 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-ba
             requireBase: false
         });
 
-        $urlRouterProvider.otherwise("/");
+        $urlRouterProvider.otherwise("/login");
 
         $stateProvider
             .state('app', {
@@ -109,6 +109,31 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-ba
                         return EnumService.getMediaTypes();
                     }]
                 }
+            })
+            .state("user_login", {
+                url: '/login',
+                templateUrl: '/views/user/user-login.html',
+                controller: 'LoginController'
+            })
+            .state("user_new", {
+                url: '/users/new',
+                templateUrl: '/views/user/user-new.html',
+                controller: 'UserController',
+                resolve: {
+                    user: [function () {
+                        return {
+                            Name: "",
+                            Email: "",
+                            Username: "",
+                            Password: ""
+                        };
+                    }]
+                }
+            })
+            .state("user_role", {
+                url: '/users/roles',
+                templateUrl: '/views/user/user-role.html',
+                controller: 'UserController'
             });
 
     });

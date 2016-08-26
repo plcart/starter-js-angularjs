@@ -11,8 +11,6 @@ angular.module('StarterAngular')
                 return Array.from(Array(Math.ceil($scope.highlightTotal() / 10)), (x, i) => i);
             };
 
-
-
             $scope.languages = languages.data;
             $scope.pages = pages.data;
             $scope.medias = medias.data;

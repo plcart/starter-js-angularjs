@@ -17,6 +17,8 @@
     <h1>Starter Angular</h1>
     <ul>
         <li><a ui-sref="page_title">Page Title</a></li>
+        <li><a ui-sref="user_new">New User</a></li>
+        <li><a ui-sref="user_login">Login</a></li>
     </ul>
     <ui-view>Loading</ui-view>
 
@@ -32,10 +34,13 @@
     <script src="/controllers/page-title/pageTitleListCtrl.js"></script>
     <script src="/controllers/page-title/pageTitleItemCtrl.js"></script>
     <script src="/controllers/page-highlight/pageHighlightItemCtrl.js"></script>
+    <script src="/controllers/user/loginCtrl.js"></script>
+    <script src="/controllers/user/userCtrl.js"></script>
     <script src="/directives/fileUpload.js"></script>
     <script src="/services/contentNegotiationFactory.js"></script>
     <script src="/services/pageTitleService.js"></script>
     <script src="/services/pageHighlightService.js"></script>
+    <script src="/services/authService.js"></script>
     <script src="/services/enumService.js"></script>
     <script src="/services/fileUploadService.js"></script>
     <!-- endbuild -->

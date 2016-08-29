@@ -13,12 +13,14 @@
     <!-- endbuild -->
 </head>
 
-<body ng-app="StarterAngular">
+<body ng-app="StarterAngular" ng-controller="MainController">
     <h1>Starter Angular</h1>
     <ul>
         <li><a ui-sref="page_title">Page Title</a></li>
         <li><a ui-sref="user_new">New User</a></li>
         <li><a ui-sref="user_login">Login</a></li>
+        <li><a ui-sref="user_role">Profile</a></li>
+        <li><a ng-click="Logout()" href="">Logout</a></li>
     </ul>
     <ui-view>Loading</ui-view>
 

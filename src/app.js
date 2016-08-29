@@ -1,9 +1,8 @@
-angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-bar'])
+angular.module('StarterAngular', ['ui.router', 'ngResource', 'ngCookies', 'angular-loading-bar'])
     .constant('urlBase', 'http://localhost:64758/api/')
     .constant('formatters', [{ method: "queryCsv", accept: 'text/csv' },
         { method: "queryExcel", accept: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }])
     .config(function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
-
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false
@@ -11,7 +10,7 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-ba
 
         $urlRouterProvider.otherwise("/login");
 
-        $httpProvider.interceptors.push(function () {
+        $httpProvider.interceptors.push(function ($q) {
             return {
                 'response': function (response) {
                     return response;
@@ -22,7 +21,7 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-ba
                             window.location.assign("/login");
                             break;
                     }
-                    return responseError;
+                    return $q.reject(responseError);
                 }
             }
         })
@@ -31,7 +30,7 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-ba
             .state('app', {
                 url: "/",
                 templateUrl: "/views/home.html",
-                controller: "MainController"
+                controller: 'MainController'
             })
             .state('page_title', {
                 url: '/pages',
@@ -145,7 +144,7 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-ba
                         };
                     }],
                     roles: [function () {
-                        return null;
+                        return {};
                     }]
                 }
             })
@@ -163,4 +162,8 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'angular-loading-ba
                 }
             });
 
-    });
+    }).run(['$http', '$cookies', function ($http, $cookies) {
+        var base64 = $cookies.get("starter_user");
+        if (base64)
+            $http.defaults.headers.common.Authorization = "Basic " + base64;
+    }]);

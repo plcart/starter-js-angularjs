@@ -1,9 +1,7 @@
 angular.module('StarterAngular')
-    .controller('MainController', ['$scope', 'FileUploadService', function ($scope, FileUploadService) {
-        $scope.Save = function () {
-            FileUploadService.upload($scope.file).then(function (data) {
-                console.log(data);
-            });
+    .controller('MainController', ['$scope', '$http', '$cookies', function ($scope, $http, $cookies) {
+        $scope.Logout = function () {
+            delete $http.defaults.headers.common.Authorization;
+            $cookies.remove('starter_user');
         }
-
     }]);

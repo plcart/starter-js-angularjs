@@ -5,10 +5,15 @@ angular.module('StarterAngular')
                 return $http.post(urlBase + 'register', user);
             },
             login: function (user) {
+                var _this = this;
                 return $http.post(urlBase + 'login', user).then(function (d) {
-                    var base64 = window.btoa(user.Username + ':' + user.Password);
-                    $cookies.put("starter_user", base64);
-                    $http.defaults.headers.common.Authorization = "Basic " + base64;
+                    var auth = 'Digest username="' + user.Username +
+                        '", realm="' + d.data.realm +
+                        '", nonce="' + d.data.nonce +
+                        '", response="' + md5(user.Username + ':' + d.data.realm + ':' + user.Password) + '"';
+
+                    $http.defaults.headers.common.Authorization = auth;
+                    $cookies.put("starter_user", window.btoa(auth));
                     return d;
                 });
             },

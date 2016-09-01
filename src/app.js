@@ -12,6 +12,18 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'ngCookies', 'angul
 
         $httpProvider.interceptors.push(function ($q) {
             return {
+                'request': function (config) {
+                    if (config.headers.Authorization
+                        && /(api\S+)/g.test(config.url)) {
+                        var uri = /(api\S+)/g.exec(config.url)[0];
+                        var response = /response="([\S]+)?"/g.exec(config.headers.Authorization)[1];
+                        var nonce = /nonce="([\S]+)?"/g.exec(config.headers.Authorization)[1];
+                        config.headers.Authorization += ', uri="' + uri + '"';
+                        config.headers.Authorization = config.headers.Authorization.replace(response,
+                            md5(response + ':' + nonce + ':' + md5(config.method + ':' + uri)));
+                    }
+                    return config;
+                },
                 'response': function (response) {
                     return response;
                 },
@@ -165,5 +177,5 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'ngCookies', 'angul
     }).run(['$http', '$cookies', function ($http, $cookies) {
         var base64 = $cookies.get("starter_user");
         if (base64)
-            $http.defaults.headers.common.Authorization = "Basic " + base64;
+            $http.defaults.headers.common.Authorization = atob(base64);
     }]);

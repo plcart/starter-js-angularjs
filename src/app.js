@@ -163,7 +163,7 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'ngCookies', 'angul
             });
 
     }).run(['$http', '$cookies', function ($http, $cookies) {
-        var base64 = $cookies.get("starter_user");
-        if (base64)
-            $http.defaults.headers.common.Authorization = "Basic " + base64;
+        // var base64 = $cookies.get("starter_user");
+        // if (base64)
+        //     $http.defaults.headers.common.Authorization = "Basic " + base64;
     }]);

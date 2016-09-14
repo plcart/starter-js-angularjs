@@ -1,29 +1,50 @@
-<h2>Current User</h2>
-<br>
-<div>
-    <label for="">Email: </label>
-    <label for="">{{user.Email}}</label>
+<ol class="breadcrumb">
+    <li><a ui-sref="app">Home</a></li>
+    <li class="active">Log In</li>
+</ol>
+<div class="page-header">
+    <h1>Hello, {{user.Name}}</h1>
 </div>
-<div>
-    <label for="">Name: </label>
-    <label for="">{{user.Name}}</label>
-</div>
-<div>
-    <label for="">Profile: </label>
-    <label for="">{{user.Profile.Name}}</label>
-</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Basic Info</h3>
+            </div>
+            <div class="panel-body">
+                <div class="container">
+                    <label class="col-sm-2 control-label">Email:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">{{user.Email}}</p>
+                    </div>
+                    <label class="col-sm-2 control-label">Name:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">{{user.Name}}</p>
+                    </div>
+                    <label class="col-sm-2 control-label">Profile:</label>
+                    <div class="col-sm-10">
+                        <p class="form-control-static">{{user.Profile.Name}}</p>
+                    </div>
+                </div>
 
-<table>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Role</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="role in roles">
-            <td>{{role.Id}}</td>
-            <td>{{role.Name}}</td>
-        </tr>
-    </tbody>
-</table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <h3>Roles</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#Id</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="role in roles">
+                <td>{{role.Id}}</td>
+                <td>{{role.Name}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

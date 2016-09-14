@@ -730,11 +730,11 @@ body.avgrund-active {
   transform: scale(1); }
 
 ::-moz-selection {
-  background: #b3d4fc;
+  background: #ff0000;
   text-shadow: none; }
 
 ::selection {
-  background: #b3d4fc;
+  background: #ff0000;
   text-shadow: none; }
 
 hr {

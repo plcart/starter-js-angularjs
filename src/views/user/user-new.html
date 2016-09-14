@@ -1,28 +1,36 @@
-<h2>Register</h2>
-<form name="formRegister">
-    <div>
-        <label for="user.Name">Name</label>
-        <input type="text" ng-model="user.Name" maxlength="150" placeholder="Enter Your Name" required>
+<ol class="breadcrumb">
+    <li><a ui-sref="app">Home</a></li>
+    <li class="active">Sign Up</li>
+</ol>
+<div class="page-header">
+    <h1>Register</h1>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form name="formRegister">
+            <div class="form-group">
+                <label for="user.Name">Name</label>
+                <input type="text" class="form-control" ng-model="user.Name" maxlength="150" placeholder="Enter Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="user.Email">Email</label>
+                <input type="email" class="form-control" ng-model="user.Email" maxlength="100" placeholder="Enter Your Email" required>
+            </div>
+            <div class="form-group">
+                <label for="user.Username">Username</label>
+                <input type="text" class="form-control" ng-model="user.Username" maxlength="150" placeholder="Enter Your Username" required>
+            </div>
+            <div class="form-group">
+                <label for="user.Password">Password</label>
+                <input type="password" class="form-control" ng-model="user.Password" pattern="^(([a-zA-Z]+\d+)|(\d+[a-zA-Z]+))[a-zA-Z0-9]*$"
+                    minlength="8" maxlength="12" placeholder="Enter Your Password" required>
+            </div>
+            <input type="submit" value="Register" class="btn btn-default pull-right" ng-disabled="formRegister.$invalid" ng-click="Save()">
+        </form>
     </div>
-    <div>
-        <label for="user.Email">Email</label>
-        <input type="email" ng-model="user.Email" maxlength="100" placeholder="Enter Your Email" required>
+</div>
+<div class="row m-t-20" ng-show="message">
+    <div class="alert alert-danger" role="alert">
+        <strong>{{message}}</strong>
     </div>
-    <div>
-        <label for="user.Username">Username</label>
-        <input type="text" ng-model="user.Username" maxlength="150" placeholder="Enter Your Username" required>
-    </div>
-    <div>
-        <label for="user.Password">Password</label>
-        <input type="password" ng-model="user.Password" pattern="^(([a-zA-Z]+\d+)|(\d+[a-zA-Z]+))[a-zA-Z0-9]*$" minlength="8" maxlength="12"
-            placeholder="Enter Your Password" required>
-    </div>
-    <div>
-        <input type="submit" value="Register" ng-disabled="formRegister.$invalid" ng-click="Save()">
-    </div>
-
-</form>
-<br>
-<div>
-    <span>{{message}}</span>
 </div>

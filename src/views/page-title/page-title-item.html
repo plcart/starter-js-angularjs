@@ -1,8 +1,14 @@
-<h2>PageItem</h2>
-
+<ol class="breadcrumb">
+    <li><a ui-sref="app">Home</a></li>
+    <li><a ui-sref="page_title">Pages</a></li>
+    <li class="active">{{::page.Page}}</li>
+</ol>
+<div class="page-header">
+    <h1>Page Titles</h1>
+</div>
 <div>
     <label>Name: </label>
-    <label>{{::page.PageFormatted}}</label>
+    <label>{{::page.Page}}</label>
 </div>
 <div>
     <label>Title: </label>

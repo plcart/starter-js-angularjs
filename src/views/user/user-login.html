@@ -1,18 +1,27 @@
-<h2>Login</h2>
-<form name="formLogin">
-    <div>
-        <label for="user.Username">Username</label>
-        <input type="text" ng-model="user.Username" maxlength="150" placeholder="Enter Your Username" required>
+<ol class="breadcrumb">
+    <li><a ui-sref="app">Home</a></li>
+    <li class="active">Log In</li>
+</ol>
+<div class="page-header">
+    <h1>Log In</h1>
+</div>
+<div class="row">
+    <div class="col-md-6 col-md-offset-3">
+        <form name="formLogin">
+            <div class="form-group">
+                <label class="sr-only" for="user.Username">Username</label>
+                <input type="text" class="form-control" ng-model="user.Username" maxlength="150" placeholder="Enter Your Username" required>
+            </div>
+            <div class="form-group">
+                <label class="sr-only" for="user.Password">Password</label>
+                <input type="password" class="form-control" ng-model="user.Password" maxlength="12" placeholder="Enter Your Password" required>
+            </div>
+            <input type="submit" value="Log In" class="btn btn-default pull-right" ng-disabled="formLogin.$invalid" ng-click="Login()">
+        </form>
     </div>
-    <div>
-        <label for="user.Password">Password</label>
-        <input type="password" ng-model="user.Password" maxlength="12" placeholder="Enter Your Password" required>
+</div>
+<div class="row m-t-20" ng-show="message">
+    <div class="alert alert-danger" role="alert">
+        <strong>{{message}}</strong>
     </div>
-    <div>
-        <input type="submit" value="Register" ng-disabled="formLogin.$invalid" ng-click="Login()">
-    </div>
-</form>
-<br>
-<div>
-    <span>{{message}}</span>
 </div>

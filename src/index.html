@@ -39,9 +39,14 @@
                         </ul>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
+                <ul ng-hide="getCurrentUser()" class="nav navbar-nav navbar-right">
                     <li><a ui-sref="user_new">Sign Up</a></li>
                     <li><a ui-sref="user_login">Log In</a></li>
+                </ul>
+                <ul ng-show="getCurrentUser()" class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#"> <label for="">Welcome, {{currentUser.Name}}</label></a>
+                    </li>
                     <li><a ui-sref="user_role">Profile</a></li>
                     <li><a ng-click="Logout()" href="">Logout</a></li>
                 </ul>
@@ -57,7 +62,8 @@
     <div class="container">
         <ui-view>
             <div class="progress">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"
+                    style="width:100%">
                     <span class="sr-only">Loading...</span>
                 </div>
             </div>

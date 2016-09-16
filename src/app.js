@@ -162,8 +162,13 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'ngCookies', 'angul
                 }
             });
 
-    }).run(['$http', '$cookies', function ($http, $cookies) {
+    }).run(['$rootScope', '$http', '$cookies', 'AuthService', function ($rootScope, $http, $cookies, AuthService) {
         var base64 = $cookies.get("starter_user");
-        if (base64)
+        if (base64) {
             $http.defaults.headers.common.Authorization = "Basic " + base64;
+            AuthService.current().then(function (d) {
+                $rootScope.currentUser = d.data;
+            });
+        }
+
     }]);

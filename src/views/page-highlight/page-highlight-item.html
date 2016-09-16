@@ -1,53 +1,67 @@
-<h2>Page Highlight</h2>
-<br>
-<div>
-    <label>Title: </label>
-    <label>{{::highlight.Title}}</label>
+<ol class="breadcrumb">
+    <li><a ui-sref="app">Home</a></li>
+    <li><a ui-sref="page_title">Pages</a></li>
+    <li><a ui-sref="page_item_edit({Page:highlight.Page.Page.toLowerCase(),Language:highlight.Page.Language.toLowerCase()})">{{::highlight.Page.Page}}</a></li>
+    <li class="active">{{::(highlight.Id || 'New')}}</li>
+</ol>
+<div class="page-header">
+    <h1>Page Highlight</h1>
 </div>
-<div>
-    <label>Description: </label>
-    <label>{{::highlight.Description}}</label>
-</div>
-<div>
-    <label>Created At: </label>
-    <label>{{::highlight.Created}}</label>
-</div>
-<br>
-<form name="formPageHighlight">
-    <div>
-        <label for="highlight.Title">Title:</label>
-        <input type="text" ng-model="highlight.Title" placeholder="Enter the Title" required />
-    </div>
-    <div>
-        <label for="highlight.Description">Description:</label>
-        <textarea type="text" ng-model="highlight.Description" placeholder="Enter the Description"></textarea>
-    </div>
-    <div>
-        <label for="highlight.Language">Language</label>
-        <select ng-model="highlight.Language" ng-options="language for language in languages track by language" required></select>
-    </div>
-    <div ng-show="MediaChanged()">
-        <img ng-show="highlight.MediaType=='Image'" ng-src="{{highlight.MediaValue}}" width="200px" alt="">
-        <a ng-href="#" ng-click="highlight.MediaChange=true">Change</a>
-    </div>
-    <div ng-hide="MediaChanged()">
-        <div>
-            <label for="highlight.MediaType">Media Type</label>
-            <select ng-model="highlight.MediaType" ng-options="media for media in medias track by media" required></select>
+<div class="row well" ng-show="highlight.Id">
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img ng-show="highlight.MediaType=='Image'" alt="" width="120px" ng-src="{{::highlight.MediaValue}}">
+            </a>
         </div>
-        <div ng-hide="DisplayFileInput()">
-            <label for="highlight.MediaValue">Value:</label>
-            <input type="text" ng-model="highlight.MediaValue" placeholder="Media Value" />
-        </div>
-        <div ng-show="DisplayFileInput()">
-            <label for="highlight.MediaValue">Value:</label>
-            <input type="file" ng-model="highlight.MediaValue" accept="{{highlight.MediaType=='Image'?'.jpg,.png,.jpeg':'.*'}}" placeholder="Media Value"
-                name="highlight.MediaValue" file-upload="highlight.MediaValue" />
+        <div class="media-body">
+            <h4>{{::highlight.Title}} <span class="label label-warning">{{::highlight.Language}}</span></h4>
+            {{::highlight.Description}} - {{::highlight.Created}}
         </div>
     </div>
-    <div>
-        <input type="submit" value="Save" ng-disabled="formPageHighlight.$invalid" ng-click="Save()">
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <form name="formPageHighlight">
+            <div class="form-group">
+                <label for="highlight.Title">Title:</label>
+                <input type="text" ng-model="highlight.Title" class="form-control" placeholder="Enter the Title" required />
+            </div>
+            <div class="form-group">
+                <label for="highlight.Description">Description:</label>
+                <textarea type="text" ng-model="highlight.Description" class="form-control" placeholder="Enter the Description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="highlight.Language">Language</label>
+                <select ng-model="highlight.Language" class="form-control" ng-options="language for language in languages track by language" required></select>
+            </div>
+            <div ng-show="MediaChanged()" class="form-group">
+                <img ng-show="highlight.MediaType=='Image'" ng-src="{{highlight.MediaValue}}" width="200px" alt="">
+                <a ng-href="#" ng-click="highlight.MediaChange=true">Change</a>
+            </div>
+            <div ng-hide="MediaChanged()">
+                <div class="form-group">
+                    <label for="highlight.MediaType">Media Type</label>
+                    <select ng-model="highlight.MediaType" class="form-control" ng-options="media for media in medias track by media" required></select>
+                </div>
+                <div ng-hide="DisplayFileInput()" class="form-group">
+                    <label for="highlight.MediaValue">Value:</label>
+                    <input type="text" ng-model="highlight.MediaValue" class="form-control" placeholder="Media Value" />
+                </div>
+                <div ng-show="DisplayFileInput()" class="form-group">
+                    <label for="highlight.MediaValue">Value:</label>
+                    <input type="file" ng-model="highlight.MediaValue" accept="{{highlight.MediaType=='Image'?'.jpg,.png,.jpeg':'.*'}}" placeholder="Media Value"
+                        name="highlight.MediaValue" class="form-control" file-upload="highlight.MediaValue" />
+                </div>
+            </div>
+            <div>
+                <input type="submit" value="Save" ng-disabled="formPageHighlight.$invalid" ng-click="Save()">
+            </div>
+        </form>
     </div>
-</form>
-<br>
-<label for="">{{message}}</label>
+</div>
+<div class="row m-t-20" ng-show="message">
+    <div class="alert alert-danger" role="alert">
+        <strong>{{message}}</strong>
+    </div>
+</div>

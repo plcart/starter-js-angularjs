@@ -1,93 +1,117 @@
 <ol class="breadcrumb">
     <li><a ui-sref="app">Home</a></li>
     <li><a ui-sref="page_title">Pages</a></li>
-    <li class="active">{{::page.Page}}</li>
+    <li class="active">{{::(page.Id?page.Page:'New')}}</li>
 </ol>
 <div class="page-header">
-    <h1>Page Titles</h1>
+    <h1>{{::(page.Id?page.Page:'New')}}</h1>
 </div>
-<div>
-    <label>Name: </label>
-    <label>{{::page.Page}}</label>
-</div>
-<div>
-    <label>Title: </label>
-    <label>{{::page.Title}}</label>
-</div>
-<div>
-    <label>Description: </label>
-    <label>{{::page.Description}}</label>
-</div>
-<div>
-    <label>Created At: </label>
-    <label>{{::page.Created}}</label>
-</div>
-<br>
-<form name="formPageTitle">
-    <div>
-        <label for="page.Title">Title:</label>
-        <input type="text" ng-model="page.Title" placeholder="Enter the Title" required />
-    </div>
-    <div>
-        <label for="page.Description">Description:</label>
-        <textarea type="text" ng-model="page.Description" placeholder="Enter the Description"></textarea>
-    </div>
-    <div>
-        <label for="page.Page">Page</label>
-        <select ng-disabled="page.Id" ng-model="page.Page" ng-options="_page for _page in pages track by _page" required></select>
-    </div>
-    <div>
-        <label for="page.Language">Language</label>
-        <select ng-disabled="page.Id" ng-model="page.Language" ng-options="language for language in languages track by language"
-            required></select>
-    </div>
-    <div ng-show="MediaChanged()">
-        <img ng-show="page.MediaType=='Image'" ng-src="{{page.MediaValue}}" width="200px" alt="">
-        <a ng-href="#" ng-click="page.MediaChange=true">Change</a>
-    </div>
-    <div ng-hide="MediaChanged()">
-        <div>
-            <label for="page.MediaType">Media Type</label>
-            <select ng-model="page.MediaType" ng-options="media for media in medias track by media" required></select>
+<div class="row well" ng-show="page.Id">
+    <div class="media">
+        <div class="media-left">
+            <a href="#">
+                <img ng-show="page.MediaType=='Image'" alt="" width="120px" ng-src="{{::page.MediaValue}}">
+            </a>
         </div>
-        <div ng-hide="DisplayFileInput()">
-            <label for="page.MediaValue">Value:</label>
-            <input type="text" ng-model="page.MediaValue" placeholder="Media Value" />
-        </div>
-        <div ng-show="DisplayFileInput()">
-            <label for="page.MediaValue">Value:</label>
-            <input type="file" ng-model="page.MediaValue" accept="{{page.MediaType=='Image'?'.jpg,.png,.jpeg':'.*'}}" placeholder="Media Value"
-                name="page.MediaValue" file-upload="page.MediaValue" />
+        <div class="media-body">
+            <h4>{{::page.Title}} <span class="label label-warning">{{::page.Language}}</span></h4>
+            {{::page.Description}} - {{::page.Created}}
         </div>
     </div>
-    <div>
-        <input type="submit" value="Save" ng-disabled="formPageTitle.$invalid" ng-click="Save()">
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <form name="formPageTitle">
+            <div class="form-group">
+                <label for="page.Title">Title</label>
+                <input type="text" class="form-control" ng-model="page.Title" placeholder="Enter the Title" required />
+            </div>
+            <div class="form-group">
+                <label for="page.Description">Description</label>
+                <textarea type="text" class="form-control" ng-model="page.Description" placeholder="Enter the Description"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="page.Page">Page</label>
+                <select ng-disabled="page.Id" class="form-control" ng-model="page.Page" ng-options="_page for _page in pages track by _page"
+                    required></select>
+            </div>
+            <div class="form-group">
+                <label for="page.Language">Language</label>
+                <select ng-disabled="page.Id" class="form-control" ng-model="page.Language" ng-options="language for language in languages track by language"
+                    required></select>
+            </div>
+            <div ng-show="MediaChanged()" class="form-group">
+                <img ng-show="page.MediaType=='Image'" ng-src="{{page.MediaValue}}" width="200px" alt="">
+                <a ng-href="#" ng-click="page.MediaChange=true">Change</a>
+            </div>
+            <div ng-hide="MediaChanged()">
+                <div class="form-group">
+                    <label for="page.MediaType">Media Type</label>
+                    <select ng-model="page.MediaType" class="form-control" ng-options="media for media in medias track by media" required></select>
+                </div>
+                <div class="form-group" ng-hide="DisplayFileInput()">
+                    <label for="page.MediaValue">Value</label>
+                    <input type="text" class="form-control" ng-model="page.MediaValue" placeholder="Media Value" />
+                </div>
+                <div class="form-group" ng-show="DisplayFileInput()">
+                    <label for="page.MediaValue">Value</label>
+                    <input type="file" class="form-control" ng-model="page.MediaValue" accept="{{page.MediaType=='Image'?'.jpg,.png,.jpeg':'.*'}}"
+                        placeholder="Media Value" name="page.MediaValue" file-upload="page.MediaValue" />
+                </div>
+            </div>
+            <input type="submit" value="Save" class="btn btn-default pull-right" ng-disabled="formPageTitle.$invalid" ng-click="Save()">
+        </form>
     </div>
-</form>
-<br>
-<label for="">{{message}}</label>
-<br>
-<a ng-show="page.Id" ui-sref="highlight_new({Page:page.Page.toLowerCase(),Language:page.Language.toLowerCase()})">Add Highlight</a>
-<h4>Highlights</h4>
-<table>
-    <thead>
-        <tr>
-            <th>Title</th>
-            <th>Created At</th>
-            <th></th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr ng-repeat="highlight in highlights">
-            <td>{{highlight.Title}}</td>
-            <td>{{highlight.Created}}</td>
-            <td><a ui-sref="highlight_edit({Page:page.Page.toLowerCase(),Language:page.Language.toLowerCase(),Id:highlight.Id})">Edit</a></td>
-            <td><a href="" ng-click="Delete(highlight)">Delete</a></td>
-        </tr>
-    </tbody>
-</table>
-<div><label for="">Showing {{highlightTotal()>10?'10':highlightTotal()}} of {{highlightTotal()}} itens</label></div>
-<div>
-    <a href="" ng-repeat="x in pagesCount()" ng-click="changePage($index+1)">{{$index+1}}</a>
+</div>
+<div class="row m-t-20" ng-show="message">
+    <div class="alert alert-danger" role="alert">
+        <strong>{{message}}</strong>
+    </div>
+</div>
+<h3>Highlights</h3>
+<div class="row" ng-show="page.Id">
+    <a ui-sref="highlight_new({Page:page.Page.toLowerCase(),Language:page.Language.toLowerCase()})" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add Highlight</a>
+</div>
+<div class="row">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Created At</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="highlight in highlights">
+                <td>{{highlight.Title}}</td>
+                <td>{{highlight.Created}}</td>
+                <td>
+                    <a ui-sref="highlight_edit({Page:page.Page.toLowerCase(),Language:page.Language.toLowerCase(),Id:highlight.Id})"><i class="fa fa-pencil"></i></a>
+                </td>
+                <td><a href="" ng-click="Delete(highlight)"><i class="fa fa-trash"></i></a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <label class="label label-primary pull-right">Showing {{highlightTotal()>10?'10':highlightTotal()}} of {{highlightTotal()}} itens</label>
+</div>
+<div class="row" ng-hide="pagesCount()<=1">
+    <nav aria-label="Page navigation">
+        <ul class="pagination">
+            <li>
+                <a href="#" ng-click="changePage(1)" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li ng-repeat="x in pagesCount()"><a href="#" ng-click="changePage($index+1)">{{$index+1}}</a></li>
+            <li>
+                <a href="#" ng-click="changePage(pagesCount().length)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>

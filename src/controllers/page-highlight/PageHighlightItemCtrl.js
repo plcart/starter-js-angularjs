@@ -4,6 +4,7 @@ angular.module('StarterAngular')
             $scope.highlight = highlight;
             $scope.medias = medias.data;
             $scope.languages = languages.data;
+            $scope.highlight.Page = $state.params;
             
             $scope.DisplayFileInput = function () {
                 return $scope.highlight.MediaType == 'Image' || $scope.highlight.MediaType == 'File';
@@ -14,7 +15,7 @@ angular.module('StarterAngular')
             }
 
             $scope.Save = function () {
-                $scope.highlight.Page = $state.params;
+                
                 if ($scope.highlight.Id)
                     $scope.highlight.$update().then(function (d) {
                         $state.go('page_item_edit', $state.params);

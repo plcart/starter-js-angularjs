@@ -14,7 +14,7 @@
     </div>
     <div>
         <label for="user.Password">Password</label>
-        <input type="password" ng-model="user.Password" pattern="^(([a-zA-Z]+\d+)|(\d+[a-zA-Z]+))[a-zA-Z0-9]*$" minlength="8" maxlength="12"
+        <input type="password" ng-model="user.Password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@!#\*])(\S{8,12})" minlength="8" maxlength="12"
             placeholder="Enter Your Password" required>
     </div>
     <div>

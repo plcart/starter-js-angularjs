@@ -1,4 +1,4 @@
-angular.module('StarterAngular', ['ui.router', 'ngResource', 'ngCookies', 'angular-loading-bar'])
+angular.module('StarterAngular', ['ui.router', 'ngResource', 'ngCookies', 'angular-loading-bar','ngMessages'])
     .constant('urlBase', 'http://localhost:64758/api/')
     .constant('formatters', [{ method: "queryCsv", accept: 'text/csv' },
         { method: "queryExcel", accept: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }])
@@ -171,4 +171,4 @@ angular.module('StarterAngular', ['ui.router', 'ngResource', 'ngCookies', 'angul
             });
         }
 
-    }]);
+    }]); 

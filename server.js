@@ -3,8 +3,8 @@ var express = require('express'),
     app = express();
 
 
-app.use(/\/(bower_components)\/[\s\S]+?\.(css|js|jpg|jpeg|png|map|otf|svg|ttf|woff|woff2)[\S]*$/, (req, res) => res.sendFile(path.join(__dirname, req.originalUrl)));
-app.use(/\/[\s\S]+?\.(css|js|jpg|jpeg|png|map|otf|svg|ttf|woff|woff2)$/, (req, res) => res.sendFile(path.join(__dirname, app.get('env') === 'development' ? 'src' : 'dist', req.originalUrl)));
+app.use(/\/(bower_components)\/[\s\S]+?\.(css|js|jpg|jpeg|png|map|otf|svg|ttf|woff|woff2|eot)[\S]*$/, (req, res) => res.sendFile(path.join(__dirname, req.originalUrl)));
+app.use(/\/[\s\S]+?\.(css|js|jpg|jpeg|png|map|otf|svg|ttf|woff|woff2|eot)$/, (req, res) => res.sendFile(path.join(__dirname, app.get('env') === 'development' ? 'src' : 'dist', req.originalUrl)));
 
 app.use(/\/views\/[\s\S]+?\.html$/, (req, res) => res.sendFile(path.join(__dirname, app.get('env') === 'development' ? 'src' : 'dist', req.originalUrl)));
 app.get(/(\/{1}.*)?$/, (req, res) => res.sendFile(path.join(__dirname, app.get('env') === 'development' ? 'src' : 'dist', 'index.html')));

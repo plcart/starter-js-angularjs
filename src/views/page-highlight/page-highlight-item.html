@@ -26,6 +26,9 @@
             <div class="form-group">
                 <label for="highlight.Title">Title:</label>
                 <input type="text" ng-model="highlight.Title" class="form-control" placeholder="Enter the Title" required />
+                <div ng-messages="highlight.Title.$error" role="alert">
+                    <div ng-message="required">Please enter a value for this field.</div>
+                </div>
             </div>
             <div class="form-group">
                 <label for="highlight.Description">Description:</label>
@@ -33,7 +36,8 @@
             </div>
             <div class="form-group">
                 <label for="highlight.Language">Language</label>
-                <select ng-model="highlight.Language" class="form-control" ng-options="language for language in languages track by language" required></select>
+                <select ng-model="highlight.Language" class="form-control" ng-options="language for language in languages track by language"
+                    required></select>
             </div>
             <div ng-show="MediaChanged()" class="form-group">
                 <img ng-show="highlight.MediaType=='Image'" ng-src="{{highlight.MediaValue}}" width="200px" alt="">
@@ -54,9 +58,7 @@
                         name="highlight.MediaValue" class="form-control" file-upload="highlight.MediaValue" />
                 </div>
             </div>
-            <div>
-                <input type="submit" value="Save" ng-disabled="formPageHighlight.$invalid" ng-click="Save()">
-            </div>
+            <input type="submit" value="Save" ng-disabled="formPageHighlight.$invalid" ng-click="Save()" class="btn btn-default pull-right">
         </form>
     </div>
 </div>
